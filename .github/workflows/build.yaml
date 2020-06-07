@@ -9,8 +9,8 @@ jobs:
     strategy:
       matrix:
         go-version: [1.14.x]
-        platform: [ubuntu-latest, macos-latest]
-    runs-on: ${{ matrix.platform }}
+        os: [ubuntu-latest, macos-latest]
+    runs-on: ${{ matrix.os }}
     steps:
     - name: Install Go
       uses: actions/setup-go@v2
@@ -26,7 +26,7 @@ jobs:
       run: gotestsum --junitfile unit-tests.xml
     - uses: actions/upload-artifact@v2
       with:
-        name: tests-${{ matrix.go-version }}-${{ matrix.platform }}
+        name: tests-${{ matrix.go-version }}-${{ matrix.os }}
         path: unit-tests.xml
     - name: Building release binaries
       run: make release
