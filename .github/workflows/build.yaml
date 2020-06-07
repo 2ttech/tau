@@ -2,7 +2,7 @@ on:
 - push
 - pull_request
 
-name: Test
+name: Build
 
 jobs:
   build:
@@ -24,3 +24,9 @@ jobs:
       run: make bootstrap
     - name: Run tests
       run: gotestsum --junitfile unit-tests.xml
+    - uses: actions/upload-artifact@v2
+      with:
+        name: tests-${{ matrix.go-version }}-${{ matrix.platform }}
+        path: unit-tests.xml
+    - name: Building release binaries
+      run: make release
