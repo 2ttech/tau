@@ -51,9 +51,9 @@ func NewRootCmd() *cobra.Command {
 	rootCmd.AddCommand(newFmtCmd())
 	rootCmd.AddCommand(newVersionCmd())
 
-	for name, cmd := range passThroughCommands {
-		rootCmd.AddCommand(newPtCmd(name, cmd))
-	}
+	// for name, cmd := range passThroughCommands {
+	// 	rootCmd.AddCommand(newPtCmd(name, cmd))
+	// }
 
 	return rootCmd
 }
